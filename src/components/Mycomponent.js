@@ -1,25 +1,17 @@
 // class components 
 // function components
 import React from "react"
+import UserInfor from "./UserInfor";
+import DisplayInfor from "./DisplayInfor";
 
 class Mycomponent extends React.Component {
 
-  state = {
-    name: "Tam Huynh",
-    age: "33",
-    address: "Quang Nam"
-  }
-  handleClick(e) {
-    console.log("My name ", this.state.name);
-    this.setState({
-      name: "Khang"
-    })
-  }
   render() {
+    const MyInfo = ['Kin', 'Khang', 'Gia']
     return (
       <div>
-        My name is {this.state.name}
-        <button onClick={(event) => { this.handleClick(event) }} >Click Me</button>
+        <UserInfor />
+        <DisplayInfor name="Gia Khang" age={5} MyInfo={MyInfo} />
       </div>
     )
   }
