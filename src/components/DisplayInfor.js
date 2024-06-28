@@ -1,49 +1,76 @@
 import React from "react";
+import Watch from "../../src/watch-gt2.jpg"
+import { useState } from "react";
 
-class DisplayInfor extends React.Component {
+const DisplayInfor = (props) => {
+  const { listUser, handleDeteleUser } = props
+  const [isShowHideListUser, setShowListUser] = useState(true)
+  const [editUser, setEditUser] = useState('')
 
-  state = {
-    isShowDetail: true
+  const handleShowHideListUser = () => {
+    setShowListUser(!isShowHideListUser)
+    console.log(isShowHideListUser);
   }
+  const handleEditUser = (item) => {
+    // console.log(item);
+    // setEditUser(item)
 
-  handleShowHide = () => {
-    this.setState({
-      isShowDetail: !this.state.isShowDetail
-    })
+
+
+    // props.handleEditListUser({
+    //   id: event.id,
+    //   name: event.name,
+    //   age: event.age
+    // }
+    // )
 
   }
-  render() {
-    console.log(this.props.listUser);
-    const { listUser } = this.props
-    // const listUser = this.props.listUser
-    return (
-      <>
+  return (
+    <>
+      <div>
+        <span className="watch">Đồng hồ thông minh Huawei Gt 2</span>
+        <section>
+          <img className="Logo" src={Watch} />
+        </section>
+      </div>
+      <div className="ShowHide">
+        <span onClick={() => handleShowHideListUser()}>
+          {isShowHideListUser ? " Hide List User " : " Show Detail List"}
+        </span>
+      </div>
+      {
+        isShowHideListUser &&
         <div>
-          <span className="cursor-poniter"
-            onClick={() => this.handleShowHide()}>
-            {this.state.isShowDetail === true ? "Ẩn bớt" : "Hiển thị chi tiết"}
-          </span>
-        </div>
-        {this.state.isShowDetail &&
-          <div>
-            {listUser.map((item) => {
-              return (
-                <div key={item.id} className={+item.age > 18 ? "green" : "red"}>
-                  <hr></hr>
-                  <div>
-                    Your name's : {item.name}
-                  </div>
-                  <div>
-                    Your Age :  {item.age}
-                  </div>
+          {listUser.map((item) => {
+            return (
+              <div key={item.id} className={+item.age > 18 ? "green" : "red"}>
+                <hr></hr>
+                <div>
+                  Your name's : {item.name}
                 </div>
-              )
-            })}
-          </div>
-        }
-      </>
-    )
-  }
+                <div>
+                  Your Age :  {item.age}
+                </div>
+                <div>
+                  Address :  {item.address}
+                </div>
+                <button
+                  className="button-delete"
+                  onClick={() => handleDeteleUser(item.id)}
+                >Delete
+                </button>
+                <button
+                >
+                  Edit
+                </button>
+
+              </div>
+            )
+          })}
+        </div>
+      }
+    </>
+  )
 }
 
 export default DisplayInfor
