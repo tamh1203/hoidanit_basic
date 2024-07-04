@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function User(props) {
   return (
-    <div>User</div>
+    <div class="text-center"> WellCome go to User Page</div>
   )
 }
