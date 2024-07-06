@@ -14,6 +14,8 @@ import { DiReact } from "react-icons/di";
 import { MdDashboard } from "react-icons/md";
 import { GiAbstract066 } from "react-icons/gi";
 import './SideBar.scss';
+import { Link } from 'react-router-dom'
+
 
 const SideBar = (props) => {
     const { image, collapsed, toggled, handleToggleSidebar } = props;
@@ -52,6 +54,8 @@ const SideBar = (props) => {
                             suffix={<span className="badge red">New</span>}
                         >
                             Dashboard
+                            <Link to="/admin" />
+
                         </MenuItem>
                     </Menu>
                     <Menu iconShape="circle">
@@ -59,9 +63,12 @@ const SideBar = (props) => {
                             icon={<FaGem />}
                             title="Features"
                         >
-                            <MenuItem> Quản lý Users</MenuItem>
-                            <MenuItem > Quản lý Bài Quiz</MenuItem>
-                            <MenuItem> Quản lý Câu Hỏi</MenuItem>
+                            <MenuItem> Manager Users
+                                <Link to="/admin/manager-user" />
+                            </MenuItem>
+
+                            <MenuItem >Quiz Management</MenuItem>
+                            <MenuItem> Question Management</MenuItem>
                         </SubMenu>
                     </Menu>
                     <Menu iconShape="circle">
@@ -74,21 +81,9 @@ const SideBar = (props) => {
                             <MenuItem> Sub menu 1</MenuItem>
                         </SubMenu>
                     </Menu>
-                    <Menu iconShape="circle">
-                        <SubMenu
-                            icon={< FaRegLaughWink />}
-                            title="LaughWink"
-                        >
-                            <MenuItem> Sub menu 1</MenuItem>
-                            <MenuItem > Sub menu 1</MenuItem>
-                            <MenuItem> Sub menu 1</MenuItem>
-                        </SubMenu>
-                    </Menu>
                 </SidebarContent>
-
                 <SidebarFooter style={{ textAlign: 'center' }}>
                     <div
-
                         className="sidebar-btn-wrapper"
                         style={{
                             padding: '20px 24px',
@@ -101,7 +96,7 @@ const SideBar = (props) => {
                             rel="noopener noreferrer"
                         >
                             <span style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden', }} >
-                                <FaGithub /> View Code
+                                <FaGithub size="1.2em" />View Source Code
                             </span>
                         </a>
                     </div>

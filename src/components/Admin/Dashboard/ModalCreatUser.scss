@@ -1,0 +1,34 @@
+
+
+
+
+.modal-add-user{
+  .img-preview{
+    border: 1px solid #ccc;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color : #ccc;
+    border: dashed #ccc;
+    img{
+      max-width: 100%;
+      max-height: 100%;
+      
+    }
+  }
+  .lable-upload{
+    padding: 4px 5px;
+    border-radius: 5px;
+    background-color: #e4e5f7;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    border: none;
+    &:hover{
+      background-color: rgb(150, 138, 138);
+    }
+  }
+}
