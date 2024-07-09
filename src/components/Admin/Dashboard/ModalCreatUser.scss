@@ -1,5 +1,13 @@
-
-
+.manager-user-container{
+  .user-content{
+    margin: 15px 0px;
+    button{
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  }
+}
 
 
 .modal-add-user{

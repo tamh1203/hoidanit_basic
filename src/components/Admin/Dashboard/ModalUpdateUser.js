@@ -1,14 +1,15 @@
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FcPlus } from "react-icons/fc";
 import "./ModalCreatUser.scss"
 import { toast } from 'react-toastify'
 import { postCreateUser } from "../../Services/apiservice"
+import _ from 'lodash';
 
-const ModalCreatUser = (props) => {
-  const { show, setShow } = props
+const ModalUpdateUser = (props) => {
+  const { show, setShow, dataUpdate } = props
 
   const handleClose = () => {
     setShow(false);
@@ -19,6 +20,7 @@ const ModalCreatUser = (props) => {
     setImage("")
     setPreviewImage("")
   }
+
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [username, setUsername] = useState("")
@@ -26,6 +28,21 @@ const ModalCreatUser = (props) => {
   const [image, setImage] = useState("")
   const [previewImage, setPreviewImage] = useState("")
 
+  // dùng useEffect để set lại giá trị của từng biến
+  // set image dùng base64 cú pháp `data:image/jpeg;base64,${data}`
+  useEffect(() => {
+    if (!_.isEmpty(dataUpdate)) {
+      // nếu object ko rỗng thì update state
+      // thư viện lodash (!_.isEmpty === check object không rỗng)
+      setEmail(dataUpdate.email)
+      setPassword("")
+      setUsername(dataUpdate.username)
+      setRole(dataUpdate.role)
+      if (dataUpdate.image) {
+        setPreviewImage(`data:image/jpeg;base64,${dataUpdate.image}`)
+      }
+    }
+  }, [dataUpdate])
 
   const hanldeUploadImage = (event) => {
     if (event.target && event.target.files && event.target.files[0]) {
@@ -73,7 +90,7 @@ const ModalCreatUser = (props) => {
         className='modal-add-user'
       >
         <Modal.Header closeButton>
-          <Modal.Title>Add New User</Modal.Title>
+          <Modal.Title>Update a User</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form className="row g-3">
@@ -84,6 +101,7 @@ const ModalCreatUser = (props) => {
                 placeholder='Please enter your email'
                 className="form-control"
                 value={email}
+                disabled={true}
                 onChange={(event) => setEmail(event.target.value)}
               />
             </div>
@@ -94,6 +112,7 @@ const ModalCreatUser = (props) => {
                 placeholder='Please enter your password'
                 className="form-control"
                 value={password}
+                disabled={true}
                 onChange={(event) => setPassword(event.target.value)}
               />
             </div>
@@ -156,4 +175,4 @@ const ModalCreatUser = (props) => {
 }
 
 
-export default ModalCreatUser
+export default ModalUpdateUser
