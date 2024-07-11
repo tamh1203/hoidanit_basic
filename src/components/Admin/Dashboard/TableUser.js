@@ -2,7 +2,7 @@
 
 const TableUser = (props) => {
 
-  const { listUser, handleClickUpdate } = props
+  const { listUser, handleClickUpdate, handleClickViewUser, handleClickBtnDeleteUser } = props
 
 
   return (
@@ -27,12 +27,18 @@ const TableUser = (props) => {
                   <td>{item.email}</td>
                   <td>{item.role}</td>
                   <td className="d-flex">
-                    <button className="btn btn-success "> View </button>
+                    <button
+                      className="btn btn-success "
+                      onClick={() => handleClickViewUser(item)}
+                    > View </button>
                     <button
                       className="btn btn-warning mx-2"
                       onClick={() => handleClickUpdate(item)}
                     > Update </button>
-                    <button className="btn btn-danger"> Delete </button>
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => handleClickBtnDeleteUser(item)}
+                    > Delete </button>
                   </td>
                 </tr>
               )

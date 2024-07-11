@@ -2,14 +2,12 @@
 import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { FcPlus } from "react-icons/fc";
 import "./ModalCreatUser.scss"
-import { toast } from 'react-toastify'
-import { postUpdateUser } from "../../Services/apiservice"
 import _ from 'lodash';
 
-const ModalUpdateUser = (props) => {
-  const { show, setShow, dataUpdate, resetDateUpdate } = props
+const ModalViewUser = (props) => {
+
+  const { show, setShow, dataViewUser, resetDateUpdate } = props
 
   const handleClose = () => {
     setShow(false);
@@ -25,61 +23,26 @@ const ModalUpdateUser = (props) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [username, setUsername] = useState("")
-  const [role, setRole] = useState("User")
+  const [role, setRole] = useState("")
   const [image, setImage] = useState("")
   const [previewImage, setPreviewImage] = useState("")
 
   // dùng useEffect để set lại giá trị của từng biến
   // set image dùng base64 cú pháp `data:image/jpeg;base64,${data}`
   useEffect(() => {
-    if (!_.isEmpty(dataUpdate)) {
+    if (!_.isEmpty(dataViewUser)) {
       // nếu object ko rỗng thì update state
-      // thư viện lodash (!_.isEmpty === check object không rỗng)
-      setEmail(dataUpdate.email)
-      setPassword("")
-      setUsername(dataUpdate.username)
-      setRole(dataUpdate.role)
-      if (dataUpdate.image) {
-        setPreviewImage(`data:image/jpeg;base64,${dataUpdate.image}`)
+      // thư viện lodash (!_.isEmpty === check object không rỗng thì =>)
+      setEmail(dataViewUser.email)
+      setPassword("**********")
+      setUsername(dataViewUser.username)
+      setRole(dataViewUser.role)
+      if (dataViewUser.image) {
+        setPreviewImage(`data:image/jpeg;base64,${dataViewUser.image}`)
       }
     }
-  }, [dataUpdate])
+  }, [dataViewUser])
 
-
-  // set ảnh bằng đường link URL.createOjectURL(file[0])
-  const hanldeUploadImage = (event) => {
-    if (event.target && event.target.files && event.target.files[0]) {
-      setPreviewImage(URL.createObjectURL(event.target.files[0]))
-      setImage(event.target.files[0])
-    }
-  }
-  // validate
-  const validateEmail = (email) => {
-    return String(email)
-      .toLowerCase()
-      .match(
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      );
-  };
-
-
-  const handleSubmitCreateUser = async () => {
-    //validate 
-    const isValidate = validateEmail(email)
-    if (!isValidate) {
-      toast.error("Invalid email")
-      return;
-    }
-    let data = await postUpdateUser(dataUpdate.id, username, role, image)
-    // lấy id của user cần update (dataUpdate)
-    if (data && data.EC == 0) {
-      toast.success(data.EM)
-      handleClose()
-      await props.fetchListUser()// hàm này cập nhật lại danh sách người dùng,đẩy lên thằng cha (ManagerUser để render lại giao diện)
-    } else {
-      toast.error(data.EM)
-    }
-  }
   return (
     <>
       <Modal
@@ -89,7 +52,7 @@ const ModalUpdateUser = (props) => {
         className='modal-add-user'
       >
         <Modal.Header closeButton>
-          <Modal.Title>Update a User</Modal.Title>
+          <Modal.Title>View Detail a User</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form className="row g-3">
@@ -122,6 +85,7 @@ const ModalUpdateUser = (props) => {
                 placeholder='Please enter username'
                 className="form-control"
                 value={username}
+                disabled={true}
                 onChange={(event) => setUsername(event.target.value)}
               />
             </div>
@@ -130,13 +94,14 @@ const ModalUpdateUser = (props) => {
               <select
                 className="form-select"
                 value={role}
+                disabled={true}
                 onChange={(event) => setRole(event.target.value)}
               >
                 <option value="User">User</option>
-                <option value="admin">Admin</option>
+                <option value="Admin">Admin</option>
               </select>
             </div>
-            <div className='col-md-12'>
+            {/* <div className='col-md-12'>
               <label
                 className="form-label lable-upload"
                 htmlFor='lableUpload'
@@ -145,9 +110,10 @@ const ModalUpdateUser = (props) => {
               <input
                 type='file'
                 id="lableUpload" hidden
+                disabled={true}
                 onChange={(event) => hanldeUploadImage(event)}
               />
-            </div>
+            </div> */}
             <div className='col-md-12 img-preview'>
               {previewImage
                 ? <img src={previewImage} />
@@ -161,12 +127,6 @@ const ModalUpdateUser = (props) => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button
-            variant="primary"
-            onClick={() => handleSubmitCreateUser()}
-          >
-            Update
-          </Button>
         </Modal.Footer>
       </Modal>
     </>
@@ -174,4 +134,4 @@ const ModalUpdateUser = (props) => {
 }
 
 
-export default ModalUpdateUser
+export default ModalViewUser

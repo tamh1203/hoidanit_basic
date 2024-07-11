@@ -4,11 +4,18 @@ import { FcPlus } from "react-icons/fc";
 import TableUser from "./TableUser";
 import { getAllUserServices } from "../../Services/apiservice"
 import ModalUpdateUser from "./ModalUpdateUser";
+import ModalViewUser from "./ModalViewUser";
+import ModalDeleteUser from "./ModalDeleteUser";
+
 const ManagerUser = (props) => {
 
   const [showModalCreateUser, setShowModalCreateUser] = useState(false)
   const [showModalUpdateUser, setShowModalUpdateUser] = useState(false)
+  const [showModalViewUser, setShowModalViewUser] = useState(false)
+  const [showModalDeleteUser, setShowModalDeleteUser] = useState(false)
   const [dataUpdate, setDataUpdate] = useState({})
+  const [dataViewUser, setDataViewUser] = useState({})
+  const [dataDelete, setDataDelete] = useState({})
 
   const [listUser, setListUser] = useState([])
 
@@ -29,8 +36,25 @@ const ManagerUser = (props) => {
     setShowModalUpdateUser(true)
     // set data cần được update
     setDataUpdate(user)
-    console.log("update user", user);
+    // console.log("update user", user);
+  }
 
+  const handleClickViewUser = (item) => {
+    setShowModalViewUser(true)
+    setDataViewUser(item)
+    console.log("view user :", item);
+  }
+
+  const handleClickBtnDeleteUser = (item) => {
+    setShowModalDeleteUser(true)
+    setDataDelete(item)
+    console.log("user delete", item);
+  }
+
+  const resetDateUpdate = () => {
+    setDataUpdate({})
+    setDataViewUser({})
+    // set lại dataUpdate == rỗng để hàm useEffect chạy lại.
   }
 
   return (
@@ -50,6 +74,8 @@ const ManagerUser = (props) => {
           <TableUser
             listUser={listUser}
             handleClickUpdate={handleClickUpdate}
+            handleClickViewUser={handleClickViewUser}
+            handleClickBtnDeleteUser={handleClickBtnDeleteUser}
           />
         </div>
       </div >
@@ -62,6 +88,21 @@ const ManagerUser = (props) => {
         show={showModalUpdateUser}
         setShow={setShowModalUpdateUser}
         dataUpdate={dataUpdate}
+        fetchListUser={fetchListUser}
+        resetDateUpdate={resetDateUpdate}
+      />
+      <ModalViewUser
+        show={showModalViewUser}
+        setShow={setShowModalViewUser}
+        dataViewUser={dataViewUser}
+        resetDateUpdate={resetDateUpdate}
+      />
+      <ModalDeleteUser
+        show={showModalDeleteUser}
+        setShow={setShowModalDeleteUser}
+        dataDelete={dataDelete}
+        fetchListUser={fetchListUser}
+
       />
     </div >
   )

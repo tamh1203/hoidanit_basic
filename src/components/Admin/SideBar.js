@@ -43,7 +43,8 @@ const SideBar = (props) => {
                         }}
                     >
                         <GiAbstract066 size={'3em'} color={"00bfff"} />
-                        <span >Manager </span>
+                        <span >Manager
+                        </span>
                     </div>
                 </SidebarHeader>
 
