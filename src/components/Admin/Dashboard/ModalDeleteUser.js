@@ -15,7 +15,10 @@ const ModalDeleteUser = (props) => {
     if (data && data.EC == 0) {
       toast.success(data.EM)
       handleClose()
-      await props.fetchListUser()// hàm này cập nhật lại danh sách người dùng,đẩy lên thằng cha (ManagerUser để render lại giao diện)
+      // props.fetchListUser()
+      props.setCurrentPage(1)
+      await props.fetchListUserWithPaginate(1)// hàm này để cập nhật lại danh sách người dùng,đẩy lên thằng cha (ManagerUser để render lại giao diện) trả về trang đầu tiên
+
     } else {
       toast.error(data.EM)
     }
@@ -26,7 +29,7 @@ const ModalDeleteUser = (props) => {
       <Modal show={show}
         onHide={handleClose}
         backdrop="static" // kích ra ngoài ko đóng modal
-        size='xm'
+        // size='xm'
         className='modal-add-user'>
         <Modal.Header closeButton>
           <Modal.Title>Delete A User</Modal.Title>

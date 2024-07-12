@@ -33,5 +33,22 @@ const postUpdateUser = (id, username, role, image) => {
 const deleteUser = (userId) => {
   return axios.delete('api/v1/participant', { data: { id: userId } })
 }
+/*axios.delete("URL", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      data: {
+        var1: "var1",
+        var2: "var2"
+      },
+    }) - truyền giá trị id theo phương thức trên ( "Url", {data: {id : userId}}*/
 
-export { postCreateUser, getAllUserServices, postUpdateUser, deleteUser }
+// paginate 
+const getUsersWithPaginate = (page, limit) => {
+  return axios.get(`api/v1/participant?page=${page}&limit=${limit}`)
+}
+
+export {
+  postCreateUser, getAllUserServices,
+  postUpdateUser, deleteUser, getUsersWithPaginate
+}

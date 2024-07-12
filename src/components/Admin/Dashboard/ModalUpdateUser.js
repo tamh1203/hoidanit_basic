@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { FcPlus } from "react-icons/fc";
+import { FaCamera } from "react-icons/fa"
 import "./ModalCreatUser.scss"
 import { toast } from 'react-toastify'
 import { postUpdateUser } from "../../Services/apiservice"
@@ -75,7 +75,9 @@ const ModalUpdateUser = (props) => {
     if (data && data.EC == 0) {
       toast.success(data.EM)
       handleClose()
-      await props.fetchListUser()// hàm này cập nhật lại danh sách người dùng,đẩy lên thằng cha (ManagerUser để render lại giao diện)
+      // props.fetchListUser() cập nhật lại tấc cả danh sách
+      // props.setCurrentPage(1) // sét về trang 1
+      await props.fetchListUserWithPaginate(props.currentPages)// hàm này cập nhật lại danh sách người dùng từng page,đẩy lên thằng cha (ManagerUser để render lại giao diện) props.currentPages => giữ nguyên trang đang đứng
     } else {
       toast.error(data.EM)
     }
@@ -141,7 +143,7 @@ const ModalUpdateUser = (props) => {
                 className="form-label lable-upload"
                 htmlFor='lableUpload'
               >
-                <FcPlus /> Upload Image</label>
+                <FaCamera /> Update Image</label>
               <input
                 type='file'
                 id="lableUpload" hidden

@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { FcPlus } from "react-icons/fc";
+import { FaCamera } from "react-icons/fa"
 import "./ModalCreatUser.scss"
 import { toast } from 'react-toastify'
 import { postCreateUser } from "../../Services/apiservice"
@@ -59,7 +59,11 @@ const ModalCreatUser = (props) => {
     if (data && data.EC == 0) {
       toast.success(data.EM)
       handleClose()
-      await props.fetchListUser()// hàm này cập nhật lại danh sách người dùng,đẩy lên thằng cha (ManagerUser để render lại giao diện)
+      // await props.fetchListUser()
+      // hàm này cập nhật lại danh sách người dùng,đẩy lên thằng cha (ManagerUser để render lại giao diện)
+      props.setCurrentPage(1)
+      await props.fetchListUserWithPaginate(1)
+
     } else {
       toast.error(data.EM)
     }
@@ -119,22 +123,35 @@ const ModalCreatUser = (props) => {
               </select>
             </div>
             <div className='col-md-12'>
-              <label
-                className="form-label lable-upload"
-                htmlFor='lableUpload'
-              >
-                <FcPlus /> Upload Image</label>
-              <input
-                type='file'
-                id="lableUpload" hidden
-                onChange={(event) => hanldeUploadImage(event)}
-              />
+              {/* <span>
+                <input
+                  type='file'
+                  id="lableUpload" hidden
+                  onChange={(event) => hanldeUploadImage(event)}
+                />  <label
+                  className="form-label lable-upload"
+                  htmlFor='lableUpload'
+                >
+                  <FaCamera /> Upload Image</label>
+              </span> */}
             </div>
             <div className='col-md-12 img-preview'>
+
               {previewImage
                 ? <img src={previewImage} />
                 :
-                <span>Image preview</span>
+                <span>
+                  <input
+                    type='file'
+                    id="lableUpload" hidden
+                    onChange={(event) => hanldeUploadImage(event)}
+                  />  <label
+                    className="form-label lable-upload"
+                    htmlFor='lableUpload'
+                  >
+                    <FaCamera /> Upload Image</label>
+                  {/* Preview */}
+                </span>
               }
             </div>
           </form>
@@ -150,7 +167,7 @@ const ModalCreatUser = (props) => {
             Save
           </Button>
         </Modal.Footer>
-      </Modal>
+      </Modal >
     </>
   );
 }

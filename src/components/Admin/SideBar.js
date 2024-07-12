@@ -13,6 +13,7 @@ import sidebarBg from '../../assets/bg2.jpg';
 import { DiReact } from "react-icons/di";
 import { MdDashboard } from "react-icons/md";
 import { GiAbstract066 } from "react-icons/gi";
+import { FiHome } from "react-icons/fi";
 import './SideBar.scss';
 import { Link } from 'react-router-dom'
 
@@ -61,7 +62,7 @@ const SideBar = (props) => {
                     </Menu>
                     <Menu iconShape="circle">
                         <SubMenu
-                            icon={<FaGem />}
+                            icon={< FaList />}
                             title="Features"
                         >
                             <MenuItem> Manager Users
@@ -72,16 +73,6 @@ const SideBar = (props) => {
                                 <Link to="/admin/manager-quiz" />
                             </MenuItem>
                             <MenuItem> Question Management</MenuItem>
-                        </SubMenu>
-                    </Menu>
-                    <Menu iconShape="circle">
-                        <SubMenu
-                            icon={< FaList />}
-                            title="ListUser"
-                        >
-                            <MenuItem> Sub menu 1</MenuItem>
-                            <MenuItem > Sub menu 1</MenuItem>
-                            <MenuItem> Sub menu 1</MenuItem>
                         </SubMenu>
                     </Menu>
                 </SidebarContent>
