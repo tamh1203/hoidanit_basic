@@ -10,7 +10,7 @@ const TablePaginate = (props) => {
   const { listUser, handleClickUpdate, handleClickViewUser, handleClickBtnDeleteUser, pageCount } = props
 
   const handlePageClick = (event) => {
-    props.fetchListUserWithPaginate(+event.selected + 1)
+    props.fetchListUserWithPaginate(+event.selected + 1)// set trang khi click page
     props.setCurrentPage(+event.selected + 1) // set page đang đứng khi tạo mới user
     console.log(`User requested page number ${event.selected}`)
   };
@@ -82,7 +82,8 @@ const TablePaginate = (props) => {
           containerClassName="pagination"
           activeClassName="active"
           renderOnZeroPageCount={null}
-          forcePage={props.currentPages - 1}// ép trả về page 1 khi chúng ta tạo mới user
+
+          forcePage={props.currentPages - 1} // ép trả về page 1 khi chúng ta tạo mới user
         />
       </div>
     </>

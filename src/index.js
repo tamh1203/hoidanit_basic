@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import store from './redux/store';
@@ -9,30 +8,15 @@ import {
   BrowserRouter, Routes,
   Route,
 } from "react-router-dom";
-import User from './components/User/User';
-import Admin from './components/Admin/Admin';
-import HomePage from './components/Home/HomePage';
-import SignIn from './components/Home/SignIn';
-import ManagerUser from './components/Admin/Dashboard/ManagerUser';
-import Dashboard from './components/Admin/Dashboard/DashBoard';
+import LayOut from './LayOut';
+
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />}>
-          <Route index element={<HomePage />} />
-          <Route path="users" element={<User />} />
-          <Route path="signin" element={<SignIn />} />
-        </Route>
-        <Route path="/admin" element={<Admin />} >
-          <Route index element={<Dashboard />} />
-          <Route path="manager-user" element={<ManagerUser />} />
-
-        </Route>
-      </Routes>
+      <LayOut />
     </BrowserRouter>
   </Provider >
 );

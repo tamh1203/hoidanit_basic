@@ -23,7 +23,7 @@ const HomePage = (props) => {
           </div>
           <div>
             <button className='bnt-started'>
-              <NavLink to="/signin" className="nav-link" >
+              <NavLink to="/register" className="nav-link" >
                 Get Started It-s Free
               </NavLink>
             </button>

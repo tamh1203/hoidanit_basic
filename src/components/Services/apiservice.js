@@ -45,10 +45,24 @@ const deleteUser = (userId) => {
 
 // paginate 
 const getUsersWithPaginate = (page, limit) => {
-  return axios.get(`api/v1/participant?page=${page}&limit=${limit}`)
+  return axios.get(`api/v1/participant?page=${page}&limit=${limit}`) // phân trang
 }
+
+const loginAPI = (email, password,) => {
+  return axios.post('api/v1/login', { email, password, })
+  // truyền obj ko có key => với key giống với tên obj
+  // {email} <=> {email: email}
+}
+
+const registerAPI = (email, password, username) => {
+  return axios.post('api/v1/register', { email, password, username })
+  // truyền obj ko có key => với key giống với tên obj
+  // {email} <=> {email: email}
+}
+
+
 
 export {
   postCreateUser, getAllUserServices,
-  postUpdateUser, deleteUser, getUsersWithPaginate
+  postUpdateUser, deleteUser, getUsersWithPaginate, loginAPI, registerAPI,
 }

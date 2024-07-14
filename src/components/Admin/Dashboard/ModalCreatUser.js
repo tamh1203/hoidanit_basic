@@ -46,14 +46,14 @@ const ModalCreatUser = (props) => {
   const handleSubmitCreateUser = async () => {
     //validate 
     const isValidate = validateEmail(email)
-    if (!isValidate) {
-      toast.error("Invalid email")
-      return;
-    }
-    if (!password) {
-      toast.error("Invalid password")
-      return;
-    }
+    // if (!isValidate) {
+    //   toast.error("Invalid email")
+    //   return;
+    // }
+    // if (!password) {
+    //   toast.error("Invalid password")
+    //   return;
+    // }
     let data = await postCreateUser(email, password, username, role, image)
     console.log("data component", data);
     if (data && data.EC == 0) {
@@ -62,7 +62,7 @@ const ModalCreatUser = (props) => {
       // await props.fetchListUser()
       // hàm này cập nhật lại danh sách người dùng,đẩy lên thằng cha (ManagerUser để render lại giao diện)
       props.setCurrentPage(1)
-      await props.fetchListUserWithPaginate(1)
+      await props.fetchListUserWithPaginate(1)// return page 1
 
     } else {
       toast.error(data.EM)
