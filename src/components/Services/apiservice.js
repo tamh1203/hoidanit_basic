@@ -49,13 +49,17 @@ const getUsersWithPaginate = (page, limit) => {
 }
 
 const loginAPI = (email, password,) => {
-  return axios.post('api/v1/login', { email, password, })
+  return axios.post('api/v1/login', {
+    email: email,
+    password: password,
+    delay: 3000
+  })
   // truyền obj ko có key => với key giống với tên obj
   // {email} <=> {email: email}
 }
 
 const registerAPI = (email, password, username) => {
-  return axios.post('api/v1/register', { email, password, username })
+  return axios.post('api/v1/register', { email, password, username, delay: 3000 })
   // truyền obj ko có key => với key giống với tên obj
   // {email} <=> {email: email}
 }

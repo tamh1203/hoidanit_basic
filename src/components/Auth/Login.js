@@ -5,26 +5,36 @@ import { loginAPI } from "../Services/apiservice"
 import { toast } from 'react-toastify'
 import { FaEyeSlash } from "react-icons/fa";
 import { IoEyeSharp } from "react-icons/io5";
-
+import { FaSpinner } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { Dologin } from "../../redux/action/userAction";
 
 const Login = () => {
+  const dispatch = useDispatch()
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
   const [showHidePassword, setShowhidePassword] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   const navigate = useNavigate()
 
-  const handleLogin = async () => {
 
+
+  const handleLogin = async () => {
+    // submit api
+    setIsLoading(true)
     let data = await loginAPI(email, password)
     console.log(data);
     if (data && data.EC == 0) {
+      dispatch(Dologin(data)) // dispatch
       toast.success(data.EM)
+      setIsLoading(false)
       navigate("/")
     } else {
       toast.error(data.EM)
+      setIsLoading(false)
     }
   }
 
@@ -89,9 +99,12 @@ const Login = () => {
         <span className="forgot-password">Forgot password?</span>
         <div className="btn-login mx-auto">
           <button
-            className="button-login"
-            onClick={() => handleLogin()}>
-            Log in to Typeform
+            className="button-login "
+            onClick={() => handleLogin()}
+            disabled={isLoading}
+          >
+            {isLoading === true && <FaSpinner className="loader-icon" />}
+            <span>Log in to Typeform</span>
           </button>
         </div>
         <div className="text-center">
