@@ -11,6 +11,16 @@ import Dashboard from './components/Admin/Dashboard/DashBoard';
 import Login from './components/Auth/Login';
 import { ToastContainer, toast } from 'react-toastify';
 import Register from "./components/Auth/Regitser";
+import ListQuiz from "./components/User/ListQuiz";
+import DetailQuiz from "./components/User/DetailQuiz";
+
+const PageNotFound = () => {
+  return (
+    <div className="alert alert-danger container mt-3" >
+      404.Upon wrong URL request I am redirecting it to PageNotFound
+    </div>
+  )
+}
 
 const LayOut = (props) => {
 
@@ -19,14 +29,16 @@ const LayOut = (props) => {
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<HomePage />} />
-          <Route path="users" element={<User />} />
+          <Route path="users" element={<ListQuiz />} />
         </Route>
+        <Route path="/quiz/:id" element={<DetailQuiz />} />
         <Route path="/admin" element={<Admin />} >
           <Route index element={<Dashboard />} />
           <Route path="manager-user" element={<ManagerUser />} />
         </Route>
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
+        <Route path='*' element={<PageNotFound />} />
       </Routes>
       <ToastContainer
         position="top-center"

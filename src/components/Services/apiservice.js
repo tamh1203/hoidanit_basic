@@ -64,9 +64,15 @@ const registerAPI = (email, password, username) => {
   // {email} <=> {email: email}
 }
 
+const getListQuiz = () => {
+  return axios.get("api/v1/quiz-by-participant")
+}
 
-
+const getDataQuiz = (id) => {
+  return axios.get(`api/v1/questions-by-quiz?quizId=${id}`)
+  // call list quiz theo id
+}
 export {
   postCreateUser, getAllUserServices,
-  postUpdateUser, deleteUser, getUsersWithPaginate, loginAPI, registerAPI,
+  postUpdateUser, deleteUser, getUsersWithPaginate, loginAPI, registerAPI, getListQuiz, getDataQuiz
 }
