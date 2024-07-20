@@ -15,7 +15,7 @@ const instance = axios.create({
 
 // Add a request interceptor
 instance.interceptors.request.use(function (config) {
-  console.log("check state store :", store.getState());
+  // console.log("check state store :", store.getState());
   // lấy state từ store .getState()
   const access_token = store?.getState()?.user.account?.access_token
   // search how to get redux state outside component

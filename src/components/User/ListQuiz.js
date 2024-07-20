@@ -9,15 +9,16 @@ const ListQuiz = (props) => {
   const [arrQuiz, setArrQuiz] = useState([])
 
   useEffect(() => {
-    getListQuizUser()
+    FetchQuestions()
   }, [])
 
-  const getListQuizUser = async () => {
+  const FetchQuestions = async () => {
     let res = await getListQuiz()
     setArrQuiz(res.DT)
     console.log("check res listQuiz", res.DT);
   }
   return (
+    //bootstrap card
     <div className="cardlist-container container">
       {arrQuiz && arrQuiz.length > 0 &&
         arrQuiz.map((item, index) => {
@@ -29,7 +30,8 @@ const ListQuiz = (props) => {
                 <p className="card-text">{item.description}</p>
                 <button
                   className="btn btn-primary"
-                  onClick={() => navigate(`/quiz/${item.id}`)}
+                  onClick={() => navigate(`/quiz/${item.id}`, { state: { description: item.description } })}
+                // search : react router usenavigate with state, truyền state  dùng useLocation
                 >Start Quiz Now</button>
               </div>
             </div>

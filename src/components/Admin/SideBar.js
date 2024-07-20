@@ -15,12 +15,12 @@ import { MdDashboard } from "react-icons/md";
 import { GiAbstract066 } from "react-icons/gi";
 import { FiHome } from "react-icons/fi";
 import './SideBar.scss';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 
 const SideBar = (props) => {
     const { image, collapsed, toggled, handleToggleSidebar } = props;
-
+    const navigate = useNavigate()
     return (
         <>
             <ProSidebar
@@ -44,7 +44,9 @@ const SideBar = (props) => {
                         }}
                     >
                         <GiAbstract066 size={'3em'} color={"00bfff"} />
-                        <span >Manager
+                        <span style={{ cursor: "pointer" }}
+                            onClick={() => navigate("/")}>
+                            Manager
                         </span>
                     </div>
                 </SidebarHeader>

@@ -72,7 +72,21 @@ const getDataQuiz = (id) => {
   return axios.get(`api/v1/questions-by-quiz?quizId=${id}`)
   // call list quiz theo id
 }
+
+const postSubmitQuiz = (data) => {
+  return axios.post(`api/v1/quiz-submit`, { ...data, delay: 3000 })
+}
+
+const postCreateQuiz = (description, name, type, image) => {
+  const data = new FormData();// gửi file image cần dùng FormData()
+  data.append("description", description);
+  data.append("name", name);
+  data.append("difficulty", type);
+  data.append("quizImage", image);
+  return axios.post(`api/v1/quiz`, data)
+}
+
 export {
   postCreateUser, getAllUserServices,
-  postUpdateUser, deleteUser, getUsersWithPaginate, loginAPI, registerAPI, getListQuiz, getDataQuiz
+  postUpdateUser, deleteUser, getUsersWithPaginate, loginAPI, registerAPI, getListQuiz, getDataQuiz, postSubmitQuiz, postCreateQuiz
 }
