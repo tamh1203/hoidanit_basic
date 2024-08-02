@@ -1,7 +1,7 @@
 
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import { getDataQuiz, postSubmitQuiz } from '../Services/apiservice';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, } from 'react';
 import _ from "lodash"
 import './DetailQuiz.scss'
 import Question from './Question';
@@ -13,7 +13,7 @@ const DetailQuiz = (props) => {
   const [index, setIndex] = useState(0)
   const [isShowModelResult, setIsShowModalResult] = useState(false)
   const [dataAnsewrResult, setDataAnsewrResult] = useState({})
-
+  const navigate = useNavigate()
   const params = useParams()
   const quizID = params.id
   // console.log(params);
@@ -53,7 +53,7 @@ const DetailQuiz = (props) => {
   }
 
   const handlePrev = () => {
-    if (index < 0) return
+    if (index < 1) return
     setIndex(index - 1)
   }
 
@@ -191,6 +191,12 @@ const DetailQuiz = (props) => {
             className='btn btn-success'
             onClick={() => handleSubmitFinish()}
           > Finish </button>
+        </div>
+        <div>
+          <span
+            className='btn btn-secondary'
+            onClick={() => navigate("/users")}
+          >-Back-</span>
         </div>
       </div>
       <div className='right-content'>

@@ -86,7 +86,46 @@ const postCreateQuiz = (description, name, type, image) => {
   return axios.post(`api/v1/quiz`, data)
 }
 
+const getByQuizAdmin = () => {
+  return axios.get('api/v1/quiz/all')
+}
+
+const deleteQuiz = (userId) => {
+  return axios.delete(`api/v1/quiz/${userId}`)
+}
+
+const putUpdateQuiz = (id, name, description, difficulty, image) => {
+
+  const data = new FormData();// gửi file image cần dùng FormData()
+  data.append("id", id);
+  data.append("name", name);
+  data.append("description", description);
+  data.append("difficulty", difficulty);
+  data.append("quizImage", image);
+  return axios.put('api/v1/quiz', data)
+  // import axios từ AxiosCustomiez, đặt tên gì cũng được.
+  //( instance.post('api/v1/participant', data) vẫn chạy được)
+}
+
+const postCreatedQuestionForQuiz = (quiz_id, description, image) => {
+
+  const data = new FormData();// gửi file image cần dùng FormData()
+  data.append("quiz_id", quiz_id);
+  data.append("description", description);
+  data.append("questionImage", image);
+  return axios.post('api/v1/question', data)
+}
+
+const postCreatedAnswerForQuestion = (description, correct_answer, question_id) => {
+  return axios.post('api/v1/answer', {
+    description, correct_answer, question_id
+  })
+}
+
+
+
 export {
   postCreateUser, getAllUserServices,
-  postUpdateUser, deleteUser, getUsersWithPaginate, loginAPI, registerAPI, getListQuiz, getDataQuiz, postSubmitQuiz, postCreateQuiz
+  postUpdateUser, deleteUser, getUsersWithPaginate, loginAPI, registerAPI, getListQuiz, getDataQuiz, postSubmitQuiz, postCreateQuiz, getByQuizAdmin, deleteQuiz, putUpdateQuiz, postCreatedQuestionForQuiz,
+  postCreatedAnswerForQuestion,
 }

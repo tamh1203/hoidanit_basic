@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import PerfectScrollbar from 'react-perfect-scrollbar'
 const Admin = (props) => {
     const [collapsed, setCollapsed] = useState(false);
 
@@ -18,9 +18,13 @@ const Admin = (props) => {
                 <div className="admin-header">
                     <FaBars onClick={() => setCollapsed(!collapsed)} />
                 </div>
+
                 <div className="admin-main">
-                    <Outlet />
+                    <PerfectScrollbar>
+                        <Outlet />
+                    </PerfectScrollbar>
                 </div>
+
                 <ToastContainer
                     position="top-center"
                     autoClose={1500}

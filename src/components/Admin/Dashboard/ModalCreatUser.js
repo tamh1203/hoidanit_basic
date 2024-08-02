@@ -145,7 +145,8 @@ const ModalCreatUser = (props) => {
                     type='file'
                     id="lableUpload" hidden
                     onChange={(event) => hanldeUploadImage(event)}
-                  />  <label
+                  />
+                  <label
                     className="form-label lable-upload"
                     htmlFor='lableUpload'
                   >
