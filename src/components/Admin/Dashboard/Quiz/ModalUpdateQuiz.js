@@ -3,7 +3,7 @@ import Modal from 'react-bootstrap/Modal';
 import { FaCamera } from "react-icons/fa"
 import _ from 'lodash';
 import { useEffect, useState } from 'react';
-import { putUpdateQuiz } from '../../../Services/apiservice';
+import { putUpdateQuiz } from '../../../../Services/apiservice';
 import { toast } from 'react-toastify';
 
 

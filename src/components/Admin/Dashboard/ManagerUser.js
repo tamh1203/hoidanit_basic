@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import ModalCreatUser from "./ModalCreatUser"
 import { FcPlus } from "react-icons/fc";
 import TableUser from "./TableUser";
-import { getAllUserServices, getUsersWithPaginate } from "../../Services/apiservice"
+import { getAllUserServices, getUsersWithPaginate } from "../../../Services/apiservice"
 import ModalUpdateUser from "./ModalUpdateUser";
 import ModalViewUser from "./ModalViewUser";
 import ModalDeleteUser from "./ModalDeleteUser";

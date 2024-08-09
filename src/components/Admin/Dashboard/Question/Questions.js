@@ -12,7 +12,7 @@ import Lightbox from "react-awesome-lightbox"; //component preview image
 import {
   getByQuizAdmin, postCreatedQuestionForQuiz,
   postCreatedAnswerForQuestion
-} from "../../../Services/apiservice"
+} from "../../../../Services/apiservice";
 import { toast } from 'react-toastify';
 
 const Questions = (props) => {

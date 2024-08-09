@@ -10,7 +10,7 @@ import _ from 'lodash';
 import Lightbox from "react-awesome-lightbox"; //component preview image
 import {
   getByQuizAdmin, getQuizWhitQA, postUpSertQA
-} from "../../../Services/apiservice"
+} from "../../../../Services/apiservice";
 import { toast } from 'react-toastify';
 
 

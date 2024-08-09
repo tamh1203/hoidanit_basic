@@ -1,9 +1,7 @@
 import React from "react"
 import ImageSignIn from "../../product-sample@1x.png"
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import Nav from 'react-bootstrap/Nav';
 import { useState } from "react"
-import { registerAPI } from "../Services/apiservice";
+import { registerAPI } from "../../Services/apiservice";
 import { toast } from 'react-toastify'
 import { useNavigate } from "react-router-dom";
 import { FaEyeSlash } from "react-icons/fa";

@@ -1,14 +1,15 @@
 import "./Login.scss"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginAPI } from "../Services/apiservice"
-import { toast } from 'react-toastify'
+import { loginAPI } from "../../Services/apiservice";
+import { toast } from 'react-toastify';
 import { FaEyeSlash } from "react-icons/fa";
 import { IoEyeSharp } from "react-icons/io5";
 import { FaSpinner } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { Dologin } from "../../redux/action/userAction";
 import Language from "../Header/Language";
+import { IoEarth } from "react-icons/io5";
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -68,6 +69,7 @@ const Login = () => {
         <button onClick={() => handleRegister()}>
           SignUp
         </button>
+        <IoEarth />
         <Language />
       </div>
       <div className="title col-4 mx-auto">

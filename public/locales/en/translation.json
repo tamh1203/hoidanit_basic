@@ -1,0 +1,18 @@
+{
+  "homepage": {
+    "title1": "Make forms worth filling out !",
+    "title2": "Get more data—like signups, feedback,and anything else—with forms designed to be refreshingly different.",
+    "title3": {
+      "login": "Get Started It-s Free",
+      "startquiz": "Start Quiz Now"
+    }
+  },
+  "button1": {
+    "login": "Log in",
+    "signup": "Sign Up"
+  },
+  "settings": {
+    "profile": "Profile",
+    "logout": "Log Out"
+  }
+}

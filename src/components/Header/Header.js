@@ -4,10 +4,11 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { LogOut } from '../Services/apiservice';
+import { LogOut } from '../../Services/apiservice';
 import { toast } from 'react-toastify';
 import { doLogout } from '../../redux/action/userAction';
 import Language from './Language';
+import { useTranslation, Trans } from 'react-i18next';
 
 const Header = (props) => {
   const navigate = useNavigate()
@@ -15,8 +16,9 @@ const Header = (props) => {
   const isAuthorSelector = useSelector(state => state.user.isAuthenticated)
 
   const dispatch = useDispatch()
-
-  console.log("account", account);
+  const { t, i18n } = useTranslation()
+  // console.log("account", account);
+  // console.log("check language >>", i18n.language);
 
   const handleLogin = () => {
     navigate("login")
@@ -50,22 +52,23 @@ const Header = (props) => {
                 <button
                   className='button_login me-2'
                   onClick={() => handleLogin()}
-                >Log in
+                >
+                  {t("button1.login")}
                 </button>
                 <button
                   className='button_signin'
                   onClick={() => navigate("register")}
                 >
-                  SignUP
+                  {t("button1.signup")}
                 </button>
               </>
               :
-              <NavDropdown title="Settings" id="basic-nav-dropdown">
-                <NavDropdown.Item >Profile</NavDropdown.Item>
+              <NavDropdown title={i18n.language == "vi" ? "Cài đặt" : "Settings"} id="basic-nav-dropdown" className='languages'>
+                <NavDropdown.Item >{t("settings.profile")}</NavDropdown.Item>
                 <NavDropdown.Item
                   onClick={() => hanldeLogOut()}
                 >
-                  Logout</NavDropdown.Item>
+                  {t("settings.logout")}</NavDropdown.Item>
               </NavDropdown>
             }
             <Language />

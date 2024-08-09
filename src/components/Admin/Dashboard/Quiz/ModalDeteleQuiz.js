@@ -1,7 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { toast } from 'react-toastify'
-import { deleteQuiz } from "../../../Services/apiservice";
+import { deleteQuiz } from "../../../../Services/apiservice";
 
 
 

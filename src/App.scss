@@ -29,7 +29,8 @@ body {
         /* margin-right: 15px; */
         padding: 0 11px;
         border: 1px solid #c1bbbb;
-        height: 40px;
+        height: 33px;
+        font-size: 14px;
     }
    
     .button_signin{
@@ -37,7 +38,8 @@ body {
       padding: 0 15px;
       background: #473b3b;
       color: white;
-      height: 40px;
+      height: 33px;
+      font-size: 14px;
       &:hover{
         background-color: black;
       }
@@ -55,10 +57,9 @@ body {
     }
   }
   .main-container{
-    
-    padding: 40px 130px;
+    padding: 20px;
     .app-content{
-      height: calc(100vh - 60px);
+      height: calc(100vh - 20px);
       .homepage-container{
         display: flex;
         flex-direction: row;

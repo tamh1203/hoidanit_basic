@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./ManagerQuiz.scss"
 import Select from 'react-select';
-import { postCreateQuiz } from "../../../Services/apiservice";
+import { postCreateQuiz } from "../../../../Services/apiservice";
 import { toast } from 'react-toastify'
 import TableQuiz from "./TableQuiz";
 import Accordion from 'react-bootstrap/Accordion';

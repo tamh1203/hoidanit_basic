@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FaCamera } from "react-icons/fa"
-import "./ModalCreatUser.scss"
-import { toast } from 'react-toastify'
-import { postUpdateUser } from "../../Services/apiservice"
+import "./ModalCreatUser.scss";
+import { toast } from 'react-toastify';
+import { postUpdateUser } from "../../../Services/apiservice";
 import _ from 'lodash';
 
 const ModalUpdateUser = (props) => {

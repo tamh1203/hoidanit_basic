@@ -10,10 +10,8 @@ import {
 } from 'react-pro-sidebar';
 import { FaTachometerAlt, intl, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart } from 'react-icons/fa';
 import sidebarBg from '../../assets/bg2.jpg';
-import { DiReact } from "react-icons/di";
 import { MdDashboard } from "react-icons/md";
 import { GiAbstract066 } from "react-icons/gi";
-import { FiHome } from "react-icons/fi";
 import './SideBar.scss';
 import { Link, useNavigate } from 'react-router-dom'
 

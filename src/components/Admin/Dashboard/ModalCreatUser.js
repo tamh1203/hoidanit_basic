@@ -5,7 +5,7 @@ import Modal from 'react-bootstrap/Modal';
 import { FaCamera } from "react-icons/fa"
 import "./ModalCreatUser.scss"
 import { toast } from 'react-toastify'
-import { postCreateUser } from "../../Services/apiservice"
+import { postCreateUser } from "../../../Services/apiservice";
 
 const ModalCreatUser = (props) => {
   const { show, setShow } = props

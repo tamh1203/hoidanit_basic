@@ -1,8 +1,7 @@
 import Select from 'react-select';
 import { useState, useEffect } from 'react';
-import { getByQuizAdmin, getAllUserServices, postAssignQuizUser } from "../../../Services/apiservice"
+import { getByQuizAdmin, getAllUserServices, postAssignQuizUser } from "../../../../Services/apiservice"
 import { toast } from 'react-toastify';
-
 
 const AssignQuiz = (props) => {
 
