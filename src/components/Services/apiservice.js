@@ -122,10 +122,32 @@ const postCreatedAnswerForQuestion = (description, correct_answer, question_id) 
   })
 }
 
+const postAssignQuizUser = (quizId, userId) => {
+  return axios.post('api/v1/quiz-assign-to-user', {
+    quizId, userId
+  })
+}
 
+const getQuizWhitQA = (quizId) => {
+  return axios.get(`api/v1/quiz-with-qa/${quizId}`)
+}
+
+//update Q/A Quizzes
+
+const postUpSertQA = (data) => {
+  return axios.post(`api/v1/quiz-upsert-qa`, { ...data })
+}
+
+const LogOut = (email, refresh_token) => {
+  return axios.post('api/v1/logout', {
+    email,
+    refresh_token,
+    delay: 1000
+  })
+}
 
 export {
   postCreateUser, getAllUserServices,
   postUpdateUser, deleteUser, getUsersWithPaginate, loginAPI, registerAPI, getListQuiz, getDataQuiz, postSubmitQuiz, postCreateQuiz, getByQuizAdmin, deleteQuiz, putUpdateQuiz, postCreatedQuestionForQuiz,
-  postCreatedAnswerForQuestion,
+  postCreatedAnswerForQuestion, postAssignQuizUser, getQuizWhitQA, postUpSertQA, LogOut
 }

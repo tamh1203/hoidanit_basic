@@ -8,6 +8,7 @@ import { IoEyeSharp } from "react-icons/io5";
 import { FaSpinner } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { Dologin } from "../../redux/action/userAction";
+import Language from "../Header/Language";
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -52,13 +53,22 @@ const Login = () => {
     console.log(showHidePassword);
   }
 
+  const hanldeKeyDown = (event) => {
+    // console.log("check event key", event, event.key)
+    if (event.key === "Enter") {
+      handleLogin();
+    }
+  }
+
   return (
-    <div className="login-container ">
+    <div className="login-container "
+    >
       <div className="header">
         <span>Don't have an account yet?</span>
         <button onClick={() => handleRegister()}>
           SignUp
         </button>
+        <Language />
       </div>
       <div className="title col-4 mx-auto">
         Typeform
@@ -72,6 +82,7 @@ const Login = () => {
           <input
             className="form-control"
             type="email"
+            placeholder="bruce@wayne.com"
             onChange={(event) => setEmail(event.target.value)}
           />
         </div>
@@ -85,8 +96,10 @@ const Login = () => {
           /> */}
             <input
               className="form-control "
+              placeholder="At least 8 characters"
               type={showHidePassword ? "text" : "password"}
               onChange={(event) => setPassword(event.target.value)}
+              onKeyDown={(event) => hanldeKeyDown(event)}
             />
             <button
               className="button-eyes-login"

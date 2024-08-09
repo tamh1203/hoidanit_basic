@@ -1,13 +1,15 @@
 import _ from "lodash"
-
+import { useState } from "react";
+import Lightbox from "react-awesome-lightbox"; //component preview image
 const Question = (props) => {
 
   const { data, index } = props;
   // console.log("check props data", data);
+  const [isShowPreImag, setIsShowPreImag] = useState(false)
 
   if (_.isEmpty(data)) {
     // data rỗng render ra mảng rỗng
-    return <></>
+    return (<></>)
   }
 
   const handleCheckBox = (event, answerId, questionId) => {
@@ -16,21 +18,37 @@ const Question = (props) => {
 
   }
 
-
   return (
     <>
       {data.image
         ?
-        <div className="q-image">
-          <img src={`data:image/jpeg;base64,${data.image}`} />
-        </div>
+        <div
+          className="q-image"
+        >
+          <img
+            style={{ cursor: "pointer" }}
+            src={`data:image/jpeg;base64,${data.image}`}
+            onClick={() => setIsShowPreImag(true)}
+          />
+          {isShowPreImag === true &&
+            <Lightbox
+              image={`data:image/jpeg;base64,${data.image}`}
+              title={"questionImage"}
+              onClose={() => setIsShowPreImag(false)}
+            >
+            </Lightbox>
+          }
+
+        </div >
+
         :
         <div className="">
 
         </div>
       }
-      <div className='question'>
-        Question {index + 1} : {data.questionDescription} ?
+      <div className="question" >
+        <span className="title"> Question {index + 1} : </span>
+        <span className="description">{data.questionDescription}</span>
       </div>
       <div className='answers'>
         {data.answers && data.answers.length > 0 &&
@@ -41,12 +59,13 @@ const Question = (props) => {
                   <input
                     className="form-check-input"
                     type="checkbox"
+                    id={`label ${index}`}
                     checked={item.isSelected}
                     onChange={(event) => handleCheckBox(event, item.id, data.questionID)}
                   />
                   <label
                     className="form-check-label"
-                    htmlFor="flexCheckDefault">
+                    htmlFor={`label ${index}`}>
                     {item.description}
                   </label>
                 </div>
@@ -55,6 +74,7 @@ const Question = (props) => {
           })
         }
       </div>
+
     </>
   )
 }

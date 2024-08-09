@@ -8,7 +8,7 @@ NProgress.configure({
   trickleSpeed: 100, // state run
   easing: "ease",
 })
-
+// axios
 const instance = axios.create({
   baseURL: 'http://localhost:8081/',
 });

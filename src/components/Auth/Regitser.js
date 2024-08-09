@@ -2,14 +2,16 @@ import React from "react"
 import ImageSignIn from "../../product-sample@1x.png"
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Nav from 'react-bootstrap/Nav';
-import "./Login.scss"
 import { useState } from "react"
 import { registerAPI } from "../Services/apiservice";
 import { toast } from 'react-toastify'
 import { useNavigate } from "react-router-dom";
 import { FaEyeSlash } from "react-icons/fa";
 import { IoEyeSharp } from "react-icons/io5";
-import { IoArrowBackCircle } from "react-icons/io5";
+import "./Register.scss"
+import Language from "../Header/Language";
+import { IoEarth } from "react-icons/io5";
+
 const Register = (props) => {
 
   const [email, setEmail] = useState("")
@@ -51,13 +53,13 @@ const Register = (props) => {
           </div>
         </div>
         <div className="col-6 title-signin">
-          <div>
-            <Nav>
-              <NavDropdown title="English" id="basic-nav-dropdown">
-                <NavDropdown.Item  >English</NavDropdown.Item>
-                <NavDropdown.Item  >VietNames</NavDropdown.Item>
-              </NavDropdown>
-            </Nav>
+          <div className="mt-3 langauge-register"  >
+            <span>Already have an account?</span>
+            <button onClick={() => navigate("/login")}>
+              Log In
+            </button>
+            <IoEarth />
+            <Language />
           </div>
           <div className="title-typeform   ">
             TypeForm
@@ -66,21 +68,23 @@ const Register = (props) => {
             Get better data with conversational forms, surveys, quizzes & more.
           </div>
           <div className="form-content col-6 mx-auto">
-            <div className="form-group  ">
-              <label>Email</label>
-              <input
-                className="form-control"
-                type="email"
-                onChange={(event) => setEmail(event.target.value)}
-              />
-            </div>
-            <div className="form-group  ">
+            <div className="form-group " >
               <label>Username</label>
               <input
                 className="form-control"
                 type="text"
+                placeholder="Black Jane Doe"
                 value={username}
                 onChange={(event) => setUsername(event.target.value)}
+              />
+            </div>
+            <div className="form-group  ">
+              <label>Email</label>
+              <input
+                className="form-control"
+                placeholder="bruce@wayne.com"
+                type="email"
+                onChange={(event) => setEmail(event.target.value)}
               />
             </div>
             <div className="">
@@ -88,6 +92,7 @@ const Register = (props) => {
                 <label >Password</label>
                 <input
                   className="form-control "
+                  placeholder="At least 8 characters"
                   type={showHidePassword ? "text" : "password"}
                   onChange={(event) => setPassword(event.target.value)}
                 />
@@ -98,12 +103,12 @@ const Register = (props) => {
                   {showHidePassword ? <IoEyeSharp /> : <FaEyeSlash />}
                 </button>
               </div>
-              <div>
+              {/* <div>
                 <input type="checkbox" />
                 <label >  I Agree to Typeform's</label><br></br>
                 <input type="checkbox" />
                 <label>  I Accept to Typeform's use of my data described in </label><br></br>
-              </div>
+              </div> */}
               <div className="">
                 <button className="register" onClick={() => handleRegisterUser()}
                 >Register</button>

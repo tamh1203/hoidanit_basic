@@ -19,6 +19,7 @@
     }
 }
   .header{
+    font-size: 14px;
     height: 45px;
     display: flex;
     justify-content: flex-end;
@@ -30,7 +31,7 @@
     background: rgb(255, 255, 255);
     border-radius: 5px;
     border: 1px solid;
-    padding: 3px 15px;
+    padding: 2px 15px;
     
      
     &:hover{

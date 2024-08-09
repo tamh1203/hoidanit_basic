@@ -1,0 +1,18 @@
+import { useSelector } from 'react-redux';
+import { Navigate } from "react-router-dom"
+
+const PrivateRouter = (props) => {
+  console.log("check props", props);
+  const isAuthorSelector = useSelector(state => state.user.isAuthenticated)
+
+  if (!isAuthorSelector) {
+    return <Navigate to="/login" ></Navigate>
+  }
+  return (
+    <>
+      {props.children}
+    </>
+  )
+}
+
+export default PrivateRouter;

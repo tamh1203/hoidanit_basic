@@ -5,15 +5,14 @@ import { FaRegPlusSquare } from "react-icons/fa";
 import { FaTrashAlt } from "react-icons/fa";
 import { AiOutlinePlusSquare } from "react-icons/ai";
 import { RiImageAddFill } from "react-icons/ri";
-import Accordion from 'react-bootstrap/Accordion';
 import { v4 as uuidv4 } from 'uuid';
 import _ from 'lodash';
 import Lightbox from "react-awesome-lightbox"; //component preview image
 import {
-  getByQuizAdmin, postCreatedQuestionForQuiz,
-  postCreatedAnswerForQuestion
+  getByQuizAdmin, getQuizWhitQA, postUpSertQA
 } from "../../../Services/apiservice"
 import { toast } from 'react-toastify';
+
 
 const QuizQA = (props) => {
 
@@ -58,6 +57,53 @@ const QuizQA = (props) => {
       })
       setListQuiz(newListQuiz)
       console.log("newListQuiz", newListQuiz);
+    }
+  }
+
+  useEffect(() => {
+    if (selectedQuiz && selectedQuiz.value) {
+      fetchQuizWithQA()
+    }
+  }, [selectedQuiz])
+
+  // return a promise that resolves with a File instance
+  const urltoFile = (url, filename, mimeType) => {
+    if (url.startsWith('data:')) {
+      var arr = url.split(','),
+        mime = arr[0].match(/:(.*?);/)[1],
+        bstr = atob(arr[arr.length - 1]),
+        n = bstr.length,
+        u8arr = new Uint8Array(n);
+      while (n--) {
+        u8arr[n] = bstr.charCodeAt(n);
+      }
+      var file = new File([u8arr], filename, { type: mime || mimeType });
+      return Promise.resolve(file);
+    }
+    return fetch(url)
+      .then(res => res.arrayBuffer())
+      .then(buf => new File([buf], filename, { type: mimeType }));
+  }
+  // //Usage example:
+  // urltoFile('data:text/plain;base64,aGVsbG8=', 'hello.txt', 'text/plain')
+  //   .then(function (file) { console.log(file); });
+
+  const fetchQuizWithQA = async () => {
+    let res = await getQuizWhitQA(+selectedQuiz.value)
+    if (res && res.EC === 0) {
+      //convert base64 to file object
+      let newQA = [];
+      for (let i = 0; i < res.DT.qa.length; i++) {
+        let ques = res.DT.qa[i]
+        if (ques.imageFile) {
+          ques.imageName = `Question${ques.id}`;
+          ques.imageFile =
+            await urltoFile(`data:img/png;base64,${ques.imageFile}`, `Question${ques.id}`, 'img/png')
+        }
+        newQA.push(ques)
+      }
+      setQuestions(newQA)
+      console.log("Check res-QA", res);
     }
   }
 
@@ -219,22 +265,31 @@ const QuizQA = (props) => {
       return;
     }
 
-    for (const ques of questions) {
-      // console.log("ques for >>", ques);
-      // submitQuestion
-      let res_q = await postCreatedQuestionForQuiz(
-        +selectedQuiz.value,
-        ques.description,
-        ques.imageFile)
-      // submitAnswer
-      for (const answer of ques.answers) {
-        await postCreatedAnswerForQuestion(
-          answer.description, answer.isCorrect, res_q.DT.id
-        )
+    const toBase64 = file => new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+    });
+    let questionClone = _.cloneDeep(questions);
+    for (let i = 0; i < questionClone.length; i++) {
+      if (questionClone[i].imageFile) {
+        questionClone[i].imageFile = await toBase64(questionClone[i].imageFile)
       }
     }
-    toast.success("Creat question success !");
-    setQuestions(initQuestions);
+    // console.log("questionClone", questionClone);
+    let res = await postUpSertQA({
+      quizId: selectedQuiz.value,
+      questions: questionClone,
+    });
+    if (res && res.EC === 0) {
+      toast.success(res.EM);
+      fetchQuizWithQA();
+    } else {
+      toast.error(res.EM)
+    }
+    console.log("check res ", res);
+    // setQuestions(initQuestions);
   }
 
   return (
@@ -252,10 +307,13 @@ const QuizQA = (props) => {
             <div className='label-question '>
               <label>Add Question :</label>
             </div>
+            {questions && questions.length == 0 &&
+              <div className='text-danger fs-3'>Currently there are no questions....</div>
+            }
             {questions && questions.length > 0
               && questions.map((ques, index) => {
                 return (
-                  <div key={index} className=' q-main mb-3'>
+                  <div key={ques.id} className=' q-main mb-3'>
                     <div className='question-content'>
                       <div className="form-floating mb-3 description ">
                         <input type="text"
@@ -308,14 +366,13 @@ const QuizQA = (props) => {
                     {ques.answers && ques.answers.length > 0
                       && ques.answers.map((answer, index) => {
                         return (
-                          <div className='answers-content mb-3'>
+                          <div className='answers-content mb-3' key={answer.id}>
                             <input
                               className='form-check-input isCorrect'
                               type="checkbox"
                               checked={answer.isCorrect}
                               onChange={(event) => handleOnChangeAnswer('CHECKBOX', answer.id, ques.id, event)}
                             />
-
                             <div className="form-floating answer-input">
                               <input
                                 type="text"
@@ -359,7 +416,7 @@ const QuizQA = (props) => {
                 <button
                   onClick={() => hanldeSubmitQuestionQuiz()}
                   className='btn btn-warning mt-3'>
-                  Save Changes</button>
+                  Save Update</button>
               </div>
             }
             {isShowPreImage && isShowPreImage === true
