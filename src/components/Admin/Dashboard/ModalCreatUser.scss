@@ -1,6 +1,11 @@
 .manager-user-container{
+  .title{
+    font-weight: 600;
+    font-size: 30px;
+  }
   .user-content{
     margin: 15px 0px;
+   
     button{
       display: flex;
       align-items: center;

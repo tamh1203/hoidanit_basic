@@ -22,14 +22,12 @@ const Login = () => {
 
   const navigate = useNavigate()
 
-
-
   const handleLogin = async () => {
     // submit api
     setIsLoading(true)
     let data = await loginAPI(email, password)
     console.log(data);
-    if (data && data.EC == 0) {
+    if (data && data.EC === 0) {
       dispatch(Dologin(data)) // dispatch
       toast.success(data.EM)
       setIsLoading(false)

@@ -1,5 +1,5 @@
 
-import { useParams, useLocation, useNavigate } from 'react-router-dom';
+import { useParams, useLocation, useNavigate, NavLink } from 'react-router-dom';
 import { getDataQuiz, postSubmitQuiz } from '../../Services/apiservice';
 import { useEffect, useState, } from 'react';
 import _ from "lodash"
@@ -7,6 +7,8 @@ import './DetailQuiz.scss'
 import Question from './Question';
 import ModalResult from './ModalResult';
 import RightContent from './Content/RightContent';
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
+
 
 const DetailQuiz = (props) => {
 
@@ -21,10 +23,10 @@ const DetailQuiz = (props) => {
   const location = useLocation()
   // console.log("location", location);
   useEffect(() => {
-    apiGetDataQuiz()
+    fetchQuestion();
   }, [quizID])
 
-  const apiGetDataQuiz = async () => {
+  const fetchQuestion = async () => {
     let res = await getDataQuiz(quizID)
     // console.log("check res Detail", res);
     if (res && res.EC === 0) {
@@ -45,6 +47,7 @@ const DetailQuiz = (props) => {
             item.answers.isSelected = false;
             answers.push(item.answers)
           })
+          answers = _.orderBy(answers, ["id"], ["asc"])// sap xep thu tu khi update theo truong id, ["asc"] thu tu tang dan`.
           return { questionID: key, answers, questionDescription, image }
         })
         .value()
@@ -158,61 +161,74 @@ const DetailQuiz = (props) => {
   }
 
   return (
-    <div className='detail-quiz-container'>
-      <div className='left-content'>
-        <div className='q-title'>
-          Quiz {quizID}: {location.state.description}
+    <>
+      <Breadcrumb className='quiz-detail-header' >
+        <Breadcrumb.Item >
+          <NavLink to="/" className="breadcrumb-item nav-link">Home</NavLink>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item className="breadcrumb-item">
+          <NavLink to="/users">Users</NavLink>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item active>
+          Quiz
+        </Breadcrumb.Item>
+      </Breadcrumb>
+      <div className='detail-quiz-container'>
+        <div className='left-content'>
+          <div className='q-title'>
+            Quiz {quizID}: {location.state.description}
+          </div>
+          <hr />
+          <div className="q-body-img">
+            <img />
+          </div>
+          <div className='q-content'>
+            <Question
+              index={index}
+              resultCheckBox={resultCheckBox}
+              data={dataQuiz && dataQuiz.length > 0
+                ?
+                dataQuiz[index]
+                :
+                []
+              }// truyền câu hỏi theo index
+            />
+          </div>
+          <div className='footer'>
+            <button
+              className='btn btn-secondary'
+              onClick={() => handlePrev()}
+            > Prev </button>
+            <button
+              className='btn btn-primary'
+              onClick={() => handleNext()}
+            > Next </button>
+            <button
+              className='btn btn-success'
+              onClick={() => handleSubmitFinish()}
+            > Finish </button>
+          </div>
+          <div>
+            <span
+              className='btn btn-secondary'
+              onClick={() => navigate("/users")}
+            >-Back-</span>
+          </div>
         </div>
-        <hr />
-        <div className="q-body-img">
-          <img />
-        </div>
-        <div className='q-content'>
-          <Question
-            index={index}
-            resultCheckBox={resultCheckBox}
-            data={dataQuiz && dataQuiz.length > 0
-              ?
-              dataQuiz[index]
-              :
-              []
-            }// truyền câu hỏi theo index
+        <div className='right-content'>
+          <RightContent
+            dataQuiz={dataQuiz}
+            handleSubmitFinish={handleSubmitFinish}
+            setIndex={setIndex}
           />
         </div>
-        <div className='footer'>
-          <button
-            className='btn btn-secondary'
-            onClick={() => handlePrev()}
-          > Prev </button>
-          <button
-            className='btn btn-primary'
-            onClick={() => handleNext()}
-          > Next </button>
-          <button
-            className='btn btn-success'
-            onClick={() => handleSubmitFinish()}
-          > Finish </button>
-        </div>
-        <div>
-          <span
-            className='btn btn-secondary'
-            onClick={() => navigate("/users")}
-          >-Back-</span>
-        </div>
-      </div>
-      <div className='right-content'>
-        <RightContent
-          dataQuiz={dataQuiz}
-          handleSubmitFinish={handleSubmitFinish}
-          setIndex={setIndex}
+        <ModalResult
+          show={isShowModelResult}
+          setShow={setIsShowModalResult}
+          dataAnsewrResult={dataAnsewrResult}
         />
       </div>
-      <ModalResult
-        show={isShowModelResult}
-        setShow={setIsShowModalResult}
-        dataAnsewrResult={dataAnsewrResult}
-      />
-    </div>
+    </>
   )
 }
 

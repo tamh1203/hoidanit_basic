@@ -1,7 +1,7 @@
 {
   "homepage": {
     "title1": "Tạo các biểu mẫu để điền vào !",
-    "title2": "Nhận được nhiều dữ liệu hơn—như đăng ký, phản hồi và bất kỳ điều gì khác—với các biểu mẫu được thiết kế hoàn toàn khác biệt",
+    "title2": "Nhận được nhiều dữ liệu hơn như đăng ký, phản hồi và bất kỳ điều gì khác với các biểu mẫu được thiết kế hoàn toàn khác biệt",
     "title3": {
       "login": "Bắt đầu miễn phí",
       "startquiz": "Bắt đầu ngay bây giờ"
@@ -14,5 +14,75 @@
   "settings": {
     "profile": "Thông tin",
     "logout": "Đăng Xuất"
+  },
+  "header": {
+    "home": "Trang Chủ",
+    "user": "Người dùng",
+    "admin": "Quản trị"
+  },
+  "dashboard": {
+    "title": " Trang tổng quan phân tích",
+    "wellcom": "Chào mừng trở lại, King ! Chúng tôi đã rất nhớ bạn👋",
+    "text1": "Tổng số người dùng",
+    "text2": "Tổng số người thi",
+    "text3": "Tổng số câu hỏi",
+    "text4": "Tổng số câu trả lời"
+  },
+  "sidebar": {
+    "title": " Quản lý",
+    "dashboard": "Tổng quan",
+    "features": "Tính Năng",
+    "menu1": "Quản lý người dùng",
+    "menu2": "Quản lý bài thi",
+    "menu3": "Quản lý câu hỏi"
+  },
+  "manager-user": {
+    "title": "Quản lý người dùng",
+    "btnaddnew": "Thêm mới"
+  },
+  "table-paginate": {
+    "th1": "Tên người dùng",
+    "th2": "E-mail",
+    "th3": " Vai trò",
+    "th4": "Hành động",
+    "btnview": "Xem chi tiết",
+    "btnupdate": "Cập nhật",
+    "btndelete": "Xóa"
+  },
+  "table-quiz": {
+    "th1": "Tên Người dùng",
+    "th2": "Mô tả",
+    "th3": "Loại",
+    "th4": "Hành động",
+    "btn-edit": "Sửa",
+    "btn-delete": "Xóa"
+  },
+  "select": {
+    "quiz": "Chọn bài kiểm tra :",
+    "user": "Chọn người dùng :",
+    "btnAssign": "Giao bài thi"
+  },
+  "manager-quiz": {
+    "title1": "Quản lý bài thi",
+    "title2": "Cập nhật câu hỏi và câu trả lời",
+    "title3": "Gian bài kiểm tra cho người dùng",
+    "addnewquiz": "Thêm bài thi",
+    "username": "Tên Người dùng",
+    "description": "Mô tả",
+    "upload-image": "Thêm ảnh",
+    "btn-save": "Lưu"
+  },
+  "quizQA": {
+    "label1": "Chọn bài thi :",
+    "label2": "Thêm mới",
+    "label3": "Mô tả câu hỏi",
+    "btn-update": "Cập nhật"
+  },
+  "manager-question": {
+    "title1": "Quản lý câu hỏi",
+    "title2": "Thêm câu hỏi",
+    "title3": "Câu hỏi",
+    "select-quiz": "Chọn bài thi",
+    "btn-saveChanges": "Lưu thay đổi"
   }
 }

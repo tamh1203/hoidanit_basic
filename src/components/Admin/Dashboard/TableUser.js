@@ -1,9 +1,9 @@
-
+import { useTranslation } from 'react-i18next';
 
 const TableUser = (props) => {
 
   const { listUser, handleClickUpdate, handleClickViewUser, handleClickBtnDeleteUser } = props
-
+  const { t } = useTranslation();
 
   return (
     <>
@@ -11,10 +11,10 @@ const TableUser = (props) => {
         <thead>
           <tr>
             <th scope="col">Id</th>
-            <th scope="col">Username</th>
-            <th scope="col">Email</th>
-            <th scope="col">Role</th>
-            <th scope="col">Action</th>
+            <th scope="col">{t("table-user.th1")}</th>
+            <th scope="col">{t("table-user.th2")}</th>
+            <th scope="col">{t("table-user.th3")}</th>
+            <th scope="col">{t("table-user.th4")}</th>
           </tr>
         </thead>
         <tbody>

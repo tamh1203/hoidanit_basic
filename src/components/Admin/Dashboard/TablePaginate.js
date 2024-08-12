@@ -1,10 +1,11 @@
 import ReactPaginate from 'react-paginate';
-
-import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import React from 'react';
 
 
 const TablePaginate = (props) => {
 
+  const { t } = useTranslation();
 
 
   const { listUser, handleClickUpdate, handleClickViewUser, handleClickBtnDeleteUser, pageCount } = props
@@ -22,10 +23,10 @@ const TablePaginate = (props) => {
         <thead>
           <tr>
             <th scope="col">Id</th>
-            <th scope="col">Username</th>
-            <th scope="col">Email</th>
-            <th scope="col">Role</th>
-            <th scope="col">Action</th>
+            <th scope="col">{t("table-paginate.th1")}</th>
+            <th scope="col">{t("table-paginate.th1")}</th>
+            <th scope="col">{t("table-paginate.th1")}</th>
+            <th scope="col">{t("table-paginate.th1")}</th>
           </tr>
         </thead>
         <tbody>
@@ -41,15 +42,15 @@ const TablePaginate = (props) => {
                     <button
                       className="btn btn-success "
                       onClick={() => handleClickViewUser(item)}
-                    > View </button>
+                    > {t("table-paginate.btnview")} </button>
                     <button
                       className="btn btn-warning mx-2"
                       onClick={() => handleClickUpdate(item)}
-                    > Update </button>
+                    > {t("table-paginate.btnupdate")} </button>
                     <button
                       className="btn btn-danger"
                       onClick={() => handleClickBtnDeleteUser(item)}
-                    > Delete </button>
+                    > {t("table-paginate.btndelete")} </button>
                   </td>
                 </tr>
               )

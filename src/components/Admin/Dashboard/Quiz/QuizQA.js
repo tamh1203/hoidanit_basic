@@ -12,11 +12,13 @@ import {
   getByQuizAdmin, getQuizWhitQA, postUpSertQA
 } from "../../../../Services/apiservice";
 import { toast } from 'react-toastify';
-
+import { useTranslation } from 'react-i18next';
 
 const QuizQA = (props) => {
+  const { t } = useTranslation();
 
   const [isShowPreImage, setIsShowPreImage] = useState(false);
+
   const initQuestions = [
     {
       id: uuidv4(),
@@ -297,7 +299,7 @@ const QuizQA = (props) => {
       <div className='question-container container'>
         <div>
           <div className='add-new-question  '>
-            <label>Select Quiz :</label>
+            <label>{t("quizQA.label1")}</label>
             <Select
               defaultValue={selectedQuiz}
               onChange={setSelectedQuiz}
@@ -305,9 +307,9 @@ const QuizQA = (props) => {
               className='col-4'
             />
             <div className='label-question '>
-              <label>Add Question :</label>
+              <label>{t("quizQA.label2")}</label>
             </div>
-            {questions && questions.length == 0 &&
+            {questions && questions.length === 0 &&
               <div className='text-danger fs-3'>Currently there are no questions....</div>
             }
             {questions && questions.length > 0
@@ -324,7 +326,8 @@ const QuizQA = (props) => {
                           value={ques.description}
                         />
                         <label htmlFor="floatingInput">
-                          Question's {index + 1} description
+
+                          {t("quizQA.label3")} {index + 1}
                         </label>
                       </div>
                       <div className='group-upload'>
@@ -416,7 +419,7 @@ const QuizQA = (props) => {
                 <button
                   onClick={() => hanldeSubmitQuestionQuiz()}
                   className='btn btn-warning mt-3'>
-                  Save Update</button>
+                  {t("quizQA.btn-update")} </button>
               </div>
             }
             {isShowPreImage && isShowPreImage === true

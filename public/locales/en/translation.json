@@ -14,5 +14,75 @@
   "settings": {
     "profile": "Profile",
     "logout": "Log Out"
+  },
+  "header": {
+    "home": "HomePage",
+    "user": "Users",
+    "admin": "Admin"
+  },
+  "dashboard": {
+    "title": " Analytics Dashboard",
+    "wellcom": "Welcome back, King ! We've missed you. 👋",
+    "text1": "Total Users",
+    "text2": "Total Quizzes",
+    "text3": "Total Questions",
+    "text4": "Total Answers"
+  },
+  "sidebar": {
+    "title": " Manager",
+    "dashboard": "Dashboard",
+    "features": "Features",
+    "menu1": "Manager Users",
+    "menu2": "Quiz Management",
+    "menu3": "Question Management"
+  },
+  "manager-user": {
+    "title": "Manager User",
+    "btnaddnew": "Add new"
+  },
+  "table-paginate": {
+    "th1": "Username",
+    "th2": "Email",
+    "th3": "Role",
+    "th4": "Action",
+    "btnview": "View",
+    "btnupdate": "Update",
+    "btndelete": "Delete"
+  },
+  "table-quiz": {
+    "th1": "Username",
+    "th2": "Desciption",
+    "th3": "Type",
+    "th4": "Action",
+    "btn-edit": "Edit",
+    "btn-delete": "Delete"
+  },
+  "select": {
+    "quiz": "Select Quiz :",
+    "user": "Select User :",
+    "btnAssign": "Assign Quiz"
+  },
+  "manager-quiz": {
+    "title1": "Manager Quizzes",
+    "title2": "Update Q/A Quiz",
+    "title3": "Assign Quiz For User",
+    "addnewquiz": "Add new quiz",
+    "username": "Username",
+    "description": "Description",
+    "upload-image": "Upload Image",
+    "btn-save": "Save"
+  },
+  "quizQA": {
+    "label1": "Select Quiz :",
+    "label2": "Add new",
+    "label3": " Description Question",
+    "btn-update": "Update Now"
+  },
+  "manager-question": {
+    "title1": "Manager Question",
+    "title2": "Add new question",
+    "title3": "Question",
+    "select-quiz": "Select-Quiz",
+    "btn-saveChanges": "Save Changes"
   }
 }

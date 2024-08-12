@@ -14,8 +14,11 @@ import {
   postCreatedAnswerForQuestion
 } from "../../../../Services/apiservice";
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 const Questions = (props) => {
+
+  const { t } = useTranslation();
 
   const [isShowPreImage, setIsShowPreImage] = useState(false);
   const initQuestions = [
@@ -240,12 +243,12 @@ const Questions = (props) => {
   return (
     <>
       <div className='question-container container'>
-        <div className='title '>
-          Manager Question</div>
+        <div className='title'>
+          {t("manager-question.title1")}</div>
         <hr />
         <div>
           <div className='add-new-question '>
-            <label>Select Quiz :</label>
+            <label>{t("manager-question.select-quiz")}</label>
             <Select
               defaultValue={selectedQuiz}
               onChange={setSelectedQuiz}
@@ -253,7 +256,7 @@ const Questions = (props) => {
               className='col-4'
             />
             <div className='label-question '>
-              <label>Add Question :</label>
+              <label>{t("manager-question.title2")}</label>
             </div>
 
             {questions && questions.length > 0
@@ -262,7 +265,7 @@ const Questions = (props) => {
                   <Accordion defaultActiveKey="0" >
                     <Accordion.Item eventKey="0"  >
                       <Accordion.Header >
-                        Questions {index + 1}
+                        {t("manager-question.title3")} {index + 1}
                       </Accordion.Header>
                       <Accordion.Body key={ques.id} >
                         <div className=' q-main mb-3' >
@@ -373,7 +376,7 @@ const Questions = (props) => {
                 <button
                   onClick={() => hanldeSubmitQuestionQuiz()}
                   className='btn btn-warning mt-3'>
-                  Save Changes</button>
+                  {t("manager-question.btn-saveChanges")}</button>
               </div>
             }
             {isShowPreImage && isShowPreImage === true

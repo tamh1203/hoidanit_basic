@@ -72,7 +72,7 @@ const ModalUpdateUser = (props) => {
     }
     let data = await postUpdateUser(dataUpdate.id, username, role, image)
     // lấy id của user cần update (dataUpdate)
-    if (data && data.EC == 0) {
+    if (data && data.EC === 0) {
       toast.success(data.EM)
       handleClose()
       // props.fetchListUser() cập nhật lại tấc cả danh sách

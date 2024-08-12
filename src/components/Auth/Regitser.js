@@ -22,7 +22,7 @@ const Register = (props) => {
   const handleRegisterUser = async () => {
     // alert("me")
     let data = await registerAPI(email, password, username)
-    if (data && data.EC == 0) {
+    if (data && data.EC === 0) {
       toast.success(data.EM)
       navigate("/login")
     } else {

@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import ModalCreatUser from "./ModalCreatUser"
 import { FcPlus } from "react-icons/fc";
-import TableUser from "./TableUser";
 import { getAllUserServices, getUsersWithPaginate } from "../../../Services/apiservice"
 import ModalUpdateUser from "./ModalUpdateUser";
 import ModalViewUser from "./ModalViewUser";
 import ModalDeleteUser from "./ModalDeleteUser";
 import TablePaginate from "./TablePaginate";
+import { useTranslation } from 'react-i18next';
 
 const ManagerUser = (props) => {
   const LIMIT_USER = 6
@@ -22,6 +22,8 @@ const ManagerUser = (props) => {
   const [dataDelete, setDataDelete] = useState({})
 
   const [listUser, setListUser] = useState([])
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     // fetchListUser(); fetch tất cả cái phần tử  
@@ -72,16 +74,17 @@ const ManagerUser = (props) => {
 
   return (
     <div className="manager-user-container" >
-      <div className="titel" >
-        Manager User
+      <div className="title" >
+        {t("manager-user.title")}
       </div >
       <div className="user-content" >
-        <div>
+        <div className="mb-3 ms-3">
           <button
-            className="btn btn-primary"
+            className="btn btn-warning"
             onClick={() => setShowModalCreateUser(true)}
           >
-            <FcPlus />Add New User</button>
+            {t("manager-user.btnaddnew")} <FcPlus />
+          </button>
         </div>
         <div>
           {/* <TableUser

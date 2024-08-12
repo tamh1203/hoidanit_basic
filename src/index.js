@@ -8,10 +8,7 @@ import "nprogress/nprogress.css"; // loading
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import "react-awesome-lightbox/build/style.css";// preview image
 import { PersistGate } from 'redux-persist/integration/react' // lưu thông tin local storage
-import {
-  BrowserRouter, Routes,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import LayOut from './LayOut';
 
 // import i18n (needs to be bundled ;))

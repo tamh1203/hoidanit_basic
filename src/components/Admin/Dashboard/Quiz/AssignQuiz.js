@@ -2,8 +2,11 @@ import Select from 'react-select';
 import { useState, useEffect } from 'react';
 import { getByQuizAdmin, getAllUserServices, postAssignQuizUser } from "../../../../Services/apiservice"
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
+
 
 const AssignQuiz = (props) => {
+  const { t } = useTranslation();
 
   const [listQuiz, setListQuiz] = useState([])
   const [selectedQuiz, setSelectedQuiz] = useState({})
@@ -58,7 +61,7 @@ const AssignQuiz = (props) => {
     <>
       <div className='assign-quiz-container row'>
         <div className='col-5 form-group'>
-          <label className='mb-2'>Select Quiz :</label>
+          <label className='mb-2'>{t("select.quiz")}</label>
           <Select
             defaultValue={selectedQuiz}
             onChange={setSelectedQuiz}
@@ -66,7 +69,7 @@ const AssignQuiz = (props) => {
           />
         </div>
         <div className='col-5 form-group'>
-          <label className='mb-2'>Select User :</label>
+          <label className='mb-2'>{t("select.user")}</label>
           <Select
             defaultValue={selectedUser}
             onChange={setSelectedUser}
@@ -77,7 +80,7 @@ const AssignQuiz = (props) => {
       <button
         className='btn btn-warning mt-3'
         onClick={() => handleAssignQuizUser()}
-      >Assign</button>
+      >{t("select.btnAssign")}</button>
     </>
   )
 }

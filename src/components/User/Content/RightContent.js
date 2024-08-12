@@ -29,7 +29,7 @@ const RightContent = (props) => {
 
     if (refDiv.current) {
       refDiv.current.forEach(item => {
-        if (item && item.className == "question clicked") {
+        if (item && item.className === "question clicked") {
           item.className = "question";
         }
       })

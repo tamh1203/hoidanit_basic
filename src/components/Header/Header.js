@@ -9,6 +9,8 @@ import { toast } from 'react-toastify';
 import { doLogout } from '../../redux/action/userAction';
 import Language from './Language';
 import { useTranslation, Trans } from 'react-i18next';
+import { RiReactjsLine } from "react-icons/ri";
+
 
 const Header = (props) => {
   const navigate = useNavigate()
@@ -37,14 +39,14 @@ const Header = (props) => {
   }
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
-      <Container>
-        <NavLink className='nav-link' to="/">React BootStrap</NavLink>
+      <Container className='icon-react'>
+        <RiReactjsLine className='icon' />
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <NavLink className='nav-link' to="/">Home</NavLink>
-            <NavLink className='nav-link' to="/users">User</NavLink>
-            <NavLink className='nav-link' to="/admin">Admin</NavLink>
+            <NavLink className='nav-link' to="/">{t("header.home")}</NavLink>
+            <NavLink className='nav-link' to="/users">{t("header.user")}</NavLink>
+            <NavLink className='nav-link' to="/admin">{t("header.admin")}</NavLink>
           </Nav>
           <Nav>
             {isAuthorSelector === false ?

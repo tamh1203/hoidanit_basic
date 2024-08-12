@@ -146,8 +146,12 @@ const LogOut = (email, refresh_token) => {
   })
 }
 
+const getOverview = () => {
+  return axios.get(`api/v1/overview`)
+}
+
 export {
   postCreateUser, getAllUserServices,
   postUpdateUser, deleteUser, getUsersWithPaginate, loginAPI, registerAPI, getListQuiz, getDataQuiz, postSubmitQuiz, postCreateQuiz, getByQuizAdmin, deleteQuiz, putUpdateQuiz, postCreatedQuestionForQuiz,
-  postCreatedAnswerForQuestion, postAssignQuizUser, getQuizWhitQA, postUpSertQA, LogOut
+  postCreatedAnswerForQuestion, postAssignQuizUser, getQuizWhitQA, postUpSertQA, LogOut, getOverview
 }

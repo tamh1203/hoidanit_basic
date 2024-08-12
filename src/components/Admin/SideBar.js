@@ -8,17 +8,21 @@ import {
     SidebarFooter,
     SidebarContent,
 } from 'react-pro-sidebar';
-import { FaTachometerAlt, intl, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart } from 'react-icons/fa';
+import { FaList, FaGithub, } from 'react-icons/fa';
 import sidebarBg from '../../assets/bg2.jpg';
 import { MdDashboard } from "react-icons/md";
 import { GiAbstract066 } from "react-icons/gi";
 import './SideBar.scss';
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
 
 
 const SideBar = (props) => {
     const { image, collapsed, toggled, handleToggleSidebar } = props;
     const navigate = useNavigate()
+
+    const { t } = useTranslation();
     return (
         <>
             <ProSidebar
@@ -44,7 +48,7 @@ const SideBar = (props) => {
                         <GiAbstract066 size={'3em'} color={"00bfff"} />
                         <span style={{ cursor: "pointer" }}
                             onClick={() => navigate("/")}>
-                            Manager
+                            {t("sidebar.title")}
                         </span>
                     </div>
                 </SidebarHeader>
@@ -55,7 +59,7 @@ const SideBar = (props) => {
                             icon={<MdDashboard />}
                             suffix={<span className="badge red">New</span>}
                         >
-                            Dashboard
+                            {t("sidebar.dashboard")}
                             <Link to="/admin" />
 
                         </MenuItem>
@@ -63,15 +67,15 @@ const SideBar = (props) => {
                     <Menu iconShape="circle">
                         <SubMenu
                             icon={< FaList />}
-                            title="Features"
+                            title={t("sidebar.features")}
                         >
-                            <MenuItem> Manager Users
+                            <MenuItem> {t("sidebar.menu1")}
                                 <Link to="/admin/manager-user" />
                             </MenuItem>
-                            <MenuItem >Quiz Management
+                            <MenuItem > {t("sidebar.menu2")}
                                 <Link to="/admin/manager-quiz" />
                             </MenuItem>
-                            <MenuItem> Question Management
+                            <MenuItem>{t("sidebar.menu3")}
                                 <Link to="/admin/manager-questions" />
                             </MenuItem>
                         </SubMenu>
