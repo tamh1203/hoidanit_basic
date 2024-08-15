@@ -41,7 +41,9 @@ const TableQuiz = (props) => {
 
   return (
     <>
-      <div className="my-3">List Quizz:</div>
+      <div className="my-3 fw-bold">
+        {t("table-quiz.listquiz")}
+      </div>
       <table className="table table-hover table-bordered my-2">
         <thead>
           <tr>

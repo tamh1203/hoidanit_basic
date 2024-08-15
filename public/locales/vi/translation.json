@@ -55,7 +55,8 @@
     "th3": "Loại",
     "th4": "Hành động",
     "btn-edit": "Sửa",
-    "btn-delete": "Xóa"
+    "btn-delete": "Xóa",
+    "listquiz": "Danh sách bài thi"
   },
   "select": {
     "quiz": "Chọn bài kiểm tra :",

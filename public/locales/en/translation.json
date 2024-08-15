@@ -55,7 +55,8 @@
     "th3": "Type",
     "th4": "Action",
     "btn-edit": "Edit",
-    "btn-delete": "Delete"
+    "btn-delete": "Delete",
+    "listquiz": "List-Quiz"
   },
   "select": {
     "quiz": "Select Quiz :",

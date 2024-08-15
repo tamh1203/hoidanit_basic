@@ -7,21 +7,24 @@
     }
     .admin-content{
         width: 100%;
+        background-color: rgba(238, 235, 232, 0.534);
         .admin-header{
             height: 60px;
-            border: 1px solid red;
+            border: 1px solid rgb(238, 227, 227);
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 0 20px 0 20px;
             span{
                 font-size: 20px;
-                color: #6e5959;
+                color: white;
+                cursor: pointer;
             }
             .right-header{
                 display: flex;
                 gap:10px;
                 font-size: 16px;
+                padding-right: 20px;
             }
         }
     }

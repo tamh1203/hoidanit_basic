@@ -17,7 +17,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 
-
 const SideBar = (props) => {
     const { image, collapsed, toggled, handleToggleSidebar } = props;
     const navigate = useNavigate()
@@ -45,7 +44,7 @@ const SideBar = (props) => {
                             whiteSpace: 'nowrap',
                         }}
                     >
-                        <GiAbstract066 size={'3em'} color={"00bfff"} />
+                        <GiAbstract066 size={'3em'} className='icon-manager-sidebar' />
                         <span style={{ cursor: "pointer" }}
                             onClick={() => navigate("/")}>
                             {t("sidebar.title")}
@@ -95,7 +94,7 @@ const SideBar = (props) => {
                             rel="noopener noreferrer"
                         >
                             <span style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden', }} >
-                                <FaGithub size="1.2em" />View Source Code
+                                <FaGithub size="1.3em" />View Source Code
                             </span>
                         </a>
                     </div>
