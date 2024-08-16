@@ -1,9 +1,13 @@
 import _ from "lodash"
 import { useState } from "react";
 import Lightbox from "react-awesome-lightbox"; //component preview image
+import { useTranslation } from 'react-i18next';
+import { IoIosClose, IoIosCheckmark } from "react-icons/io";
+import "./Question.scss";
+
 const Question = (props) => {
 
-  const { data, index } = props;
+  const { data, index, isSubmitQuiz, isShowAnswer } = props;
   // console.log("check props data", data);
   const [isShowPreImag, setIsShowPreImag] = useState(false)
 
@@ -11,6 +15,7 @@ const Question = (props) => {
     // data rỗng render ra mảng rỗng
     return (<></>)
   }
+  console.log("data", data);
 
   const handleCheckBox = (event, answerId, questionId) => {
     console.log("id answer : ", answerId, "id question : ", questionId);
@@ -60,6 +65,7 @@ const Question = (props) => {
                     className="form-check-input"
                     type="checkbox"
                     id={`label ${index}`}
+                    disabled={isSubmitQuiz}
                     checked={item.isSelected}
                     onChange={(event) => handleCheckBox(event, item.id, data.questionID)}
                   />
@@ -68,6 +74,18 @@ const Question = (props) => {
                     htmlFor={`label ${index}`}>
                     {item.description}
                   </label>
+                  {/* {console.log("item question", item)} */}
+                  {isShowAnswer === true &&
+                    <>
+                      {item.isSelected === true && item.isCorrect === false
+                        && <IoIosClose className='incorrect' />
+                      }
+
+                      {item.isCorrect === true
+                        && <IoIosCheckmark className='correct' />
+                      }
+                    </>
+                  }
                 </div>
               </div>
             )

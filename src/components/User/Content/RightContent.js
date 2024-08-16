@@ -12,7 +12,7 @@ const RightContent = (props) => {
   }
 
   const getClassQuestion = (question, index) => {
-    console.log(index, question);
+    // console.log(index, question);
     // check answered
     if (question && question.answers.length > 0) {
       let isAnswered = question.answers.find(item => item.isSelected === true) // ham find loop isSelected co 1 gia tri === true return undefined

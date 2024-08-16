@@ -5,7 +5,7 @@ const ModalResult = (props) => {
 
   const { show, setShow, dataAnsewrResult } = props;
   const handleClose = () => setShow(false);
-  console.log(dataAnsewrResult);
+  // console.log(dataAnsewrResult);
 
   return (
     <>
@@ -27,14 +27,18 @@ const ModalResult = (props) => {
 
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={() => handleClose()}>
+          <Button variant="primary" onClick={() => {
+            handleClose();
+            props.handleShowAnswer()
+          }}>
+
             Show Ansewrs
           </Button>
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
         </Modal.Footer>
-      </Modal>
+      </Modal >
     </>
   );
 }
