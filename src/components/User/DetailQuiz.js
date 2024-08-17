@@ -167,12 +167,12 @@ const DetailQuiz = (props) => {
           console.log("dataQuiz", dataQuiz);
           let a = res.DT.quizData;
           for (let q of a) {
-            for (let i = 0; i < dataQuizClone.length; i++) {
+            for (let i = 0; dataQuizClone.length > i; i++) {
               if (+q.questionId === +dataQuizClone[i].questionID) {
                 //update answer
 
                 let newAnswers = [];
-                for (let j = 0; j < dataQuizClone[i].answers.length; j++) {
+                for (let j = 0; dataQuizClone[i].answers.length > j; j++) {
                   let s = q.systemAnswers.find(item => +item.id === +dataQuizClone[i].answers[j].id)
                   if (s) {
                     dataQuizClone[i].answers[j].isCorrect = true;
