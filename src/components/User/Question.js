@@ -15,7 +15,7 @@ const Question = (props) => {
     // data rỗng render ra mảng rỗng
     return (<></>)
   }
-  console.log("data", data);
+  // console.log("data", data);
 
   const handleCheckBox = (event, answerId, questionId) => {
     console.log("id answer : ", answerId, "id question : ", questionId);
